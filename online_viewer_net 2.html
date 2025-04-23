@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tischkicker Turnierbaum</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            background-color: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tournament-tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .round {
+            display: flex;
+            flex-direction: column;
+            margin: 20px 0;
+            align-items: center;
+        }
+
+        .round h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .match {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 12px;
+            margin: 8px 0;
+            text-align: center;
+            min-width: 250px; /* Platz für Eingabefelder */
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .match label {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .match input[type="number"] {
+            width: 60px;
+            padding: 6px;
+            margin-bottom: 5px;
+            border: 1px solid #eee;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        .connector {
+            border-left: 2px solid #bbb;
+            margin-left: calc(50% - 1px);
+            position: relative;
+            height: 30px;
+        }
+
+        .connector::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -6px;
+            width: 12px;
+            height: 2px;
+            background-color: #bbb;
+        }
+
+        .round:first-child .connector:nth-child(4)::before,
+        .round:first-child .connector:nth-child(8)::before {
+            display: none;
+        }
+
+        .round:nth-child(2) .match {
+            min-width: 220px; /* Wieder normale Breite für Halbfinale */
+        }
+
+        .round:nth-child(2) .match select {
+            width: 100%;
+            padding: 9px;
+            margin-top: 6px;
+            border: 1px solid #eee;
+            box-sizing: border-box;
+            border-radius: 3px;
+            font-size: 1em;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tournament-tree {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .round {
+                margin: 0 30px;
+            }
+
+            .connector {
+                border-left: 2px solid #bbb;
+                margin-left: calc(50% - 1px);
+                position: relative;
+                height: auto;
+            }
+
+            .connector::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: -6px;
+                width: 12px;
+                height: 2px;
+                background-color: #bbb;
+            }
+
+            .round:first-child .connector {
+                height: 60px; /* Angepasst für Eingabefelder */
+            }
+
+            .round:nth-child(2) .connector {
+                height: 90px;
+            }
+
+            .round:nth-child(3) .connector {
+                height: 130px;
+            }
+
+            .round:first-child .connector:nth-child(4)::before,
+            .round:first-child .connector:nth-child(8)::before {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Kicker Turnier</h1>
+    <div class="tournament-tree">
+        <div class="round">
+            <h3>Viertelfinale</h3>
+            <div class="match">
+                Phillip & Felix
+                <label for="vf1_score1">Tore:</label>
+                <input type="number" id="vf1_score1" value="0">
+                <label for="vf1_score2">Gegentore:</label>
+                <input type="number" id="vf1_score2" value="0">
+            </div>
+            <div class="match">
+                Anna & Julian
+                <label for="vf1_score3">Tore:</label>
+                <input type="number" id="vf1_score3" value="0">
+                <label for="vf1_score4">Gegentore:</label>
+                <input type="number" id="vf1_score4" value="0">
+            </div>
+            <div class="connector"></div>
+            <div class="match">
+                Tanja & Xaver
+                <label for="vf2_score1">Tore:</label>
+                <input type="number" id="vf2_score1" value="0">
+                <label for="vf2_score2">Gegentore:</label>
+                <input type="number" id="vf2_score2" value="0">
+            </div>
+            <div class="match">
+                Florian & Marlene
+                <label for="vf2_score3">Tore:</label>
+                <input type="number" id="vf2_score3" value="0">
+                <label for="vf2_score4">Gegentore:</label>
+                <input type="number" id="vf2_score4" value="0">
+            </div>
+            <div class="connector"></div>
+            <div class="match">
+                Michelle & Sophia
+                <label for="vf3_score1">Tore:</label>
+                <input type="number" id="vf3_score1" value="0">
+                <label for="vf3_score2">Gegentore:</label>
+                <input type="number" id="vf3_score2" value="0">
+            </div>
+            <div class="match">
+                Volker & Gabriel
+                <label for="vf3_score3">Tore:</label>
+                <input type="number" id="vf3_score3" value="0">
+                <label for="vf3_score4">Gegentore:</label>
+                <input type="number" id="vf3_score4" value="0">
+            </div>
+        </div>
+        <div class="round">
+            <h3>Halbfinale</h3>
+            <div class="match">
+                <select name="halbfinale1_team1" id="hf1_team1">
+                    <option value="">- Team auswählen -</option>
+                </select>
+            </div>
+            <div class="connector"></div>
+            <div class="match">
+                <select name="halbfinale1_team2" id="hf1_team2">
+                    <option value="">- Team auswählen -</option>
+                </select>
+            </div>
+            <div class="connector"></div>
+            <div class="match">
+                <select name="halbfinale2_team1" id="hf2_team1">
+                    <option value="">- Team auswählen -</option>
+                </select>
+            </div>
+            <div class="connector"></div>
+            <div class="match">
+                <select name="halbfinale2_team2" id="hf2_team2">
+                    <option value="">- Team auswählen -</option>
+                </select>
+            </div>
+        </div>
+        <div class="round">
+            <h3>Finale</h3>
+            <div class="match">
+                <select name="finale_team1" id="finale_team1">
+                    <option value="">- Team auswählen -</option>
+                </select>
+            </div>
+            <div class="connector"></div>
+            <div class="match">
+                <select name="finale_team2" id="finale_team2">
+                    <option value="">- Team auswählen -</option>
+                </select>
+            </div>
+        </div>
+        <div class="round">
+            <h3>Gewinner</h3>
+            <div class="match">
+                <select name="gewinner" id="gewinner">
+                    <option value="">- Gewinner auswählen -</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function determineHalbfinalTeams() {
+            const matches = [
+                { team1: "Phillip & Felix", score1: parseInt(document.getElementById("vf1_score1").value), score2: parseInt(document.getElementById("vf1_score2").value), team2: "Anna & Julian" },
+                { team1: "Tanja & Xaver", score1: parseInt(document.getElementById("vf2_score1").value), score2: parseInt(document.getElementById("vf2_score2").value), team2: "Florian & Marlene" },
+                { team1: "Michelle & Sophia", score1: parseInt(document.getElementById("vf3_score1").value), score2: parseInt(document.getElementById("vf3_score2").value), team2: "Volker & Gabriel" }
+            ];
+
+            const winners = [];
+            const losersWithDiff = [];
+
+            matches.forEach(match => {
+                const diff1 = match.score1 - match.score2;
+                const diff2 = match.score2 - match.score1;
+
+                if (diff1 > diff2) {
+                    winners.push(match.team1);
+                    losersWithDiff.push({ team: match.team2, diff: diff2 });
+                } else if (diff2 > diff1) {
+                    winners.push(match.team2);
+                    losersWithDiff.push({ team: match.team1, diff: diff1 });
+                } else {
+                    // Bei Gleichstand hier eine Logik einfügen (z.B. zufällig, oder Eingabe ermöglichen)
+                    winners.push(match.team1); // Temporäre Lösung bei Unentschieden
+                    losersWithDiff.push({ team: match.team2, diff: 0 }); // Temporäre Lösung bei Unentschieden
+                }
+            });
+
+            losersWithDiff.sort((a, b) => b.diff - a.diff); // Absteigend nach Tordifferenz sortieren
+
+            const halbfinalTeams = winners.slice(0, 3); // Die drei Gewinner
+            if (losersWithDiff.length > 0) {
+                halbfinalTeams.push(losersWithDiff[0].team); // Der beste Verlierer
+            }
+
+            // Befülle die Dropdowns im Halbfinale
+            const hf1Team1Select = document.getElementById("hf1_team1");
+            const hf1Team2Select = document.getElementById("hf1_team2");
+            const hf2Team1Select = document.getElementById("hf2_team1");
+            const hf2Team2Select = document.getElementById("hf2_team2");
+
+            [hf1Team1Select, hf1Team2Select, hf2Team1Select, hf2Team2Select].forEach(select => {
+                select.innerHTML = '<option value="">- Team auswählen -</option>';
+            });
+
+            halbfinalTeams.forEach(team => {
+                const option1 = document.createElement("option");
+                option1.value = team;
+                option1.textContent = team;
+                hf1Team1Select.appendChild(option1);
+
+                const option2 = document.createElement("option");
+                option2.value = team;
+                option2.textContent = team;
+                hf1Team2Select.appendChild(option2);
+
+                const option3 = document.createElement("option");
+                option3.value = team;
+                option3.textContent = team;
+                hf2Team1Select.appendChild(option3);
+
+                const option4 = document.createElement("option");
+                option4.value = team;
+                option4.textContent = team;
+                hf2Team2Select.appendChild(option4);
+            });
+
+            // Hier müsstest du weitere Logik hinzufügen, um die Dropdowns im Finale und Gewinner zu befüllen,
+            // basierend auf den Auswahlen im Halbfinale.
+        }
+
+        // Füge Event Listener hinzu, um die Halbfinal-Teams zu bestimmen, sobald sich die Ergebnisse ändern
+        const scoreInputs = document.querySelectorAll('.match input[type="number"]');
+        scoreInputs.forEach(input => {
+            input.addEventListener('change', determineHalbfinalTeams);
+        });
+
+        // Initiales Aufrufen, falls schon Werte vorhanden sind
+        determineHalbfinalTeams();
+    </script>
+</body>
+</html>
